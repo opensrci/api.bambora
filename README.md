@@ -1,4 +1,4 @@
-# api-bambora-opensrci
+# api-opensrci
 Smart Technology Insider
 
 LAN Components:
