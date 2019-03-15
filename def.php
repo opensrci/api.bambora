@@ -22,21 +22,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-// Request Base URL 
+//customer define parameters
+require 'my_def.php';
+
+
+// eft Request Base URL 
 define("ReqURLBase","https://api.na.bambora.com/",TRUE); 
 define("ReqVer","v1/",TRUE); 
-define("ReqFun","payments/",TRUE); 
-define("REQURL", ReqURLBase.ReqVer.ReqFun, TRUE);
+define("eft_ReqFun","batchpayments/",TRUE); 
+define("eft_ReqURL", ReqURLBase.ReqVer.eft_ReqFun, TRUE);
 
-// Request Params
-define("MID","*****",TRUE);         //need change
-define("PWD","*****",TRUE);         //need change
 
 // Reqeust Auth
-$auth=   ['auth' =>
-            [MID,
-             PWD]
-        ];
+define ( 'AUTH','Passcode '. base64_encode (MID.':'.APIKEY));
+
+//eft_params
+define ( 'eft_EB_CRITERIA', BOUNDARY_STRING.'
+                    Content-Disposition: form-data; name="criteria"
+                    Content-Type: application/json' );
+define ( 'eft_EB_DATA'  ,  BOUNDARY_STRING.'
+                    Content-Disposition: form-data; name="data", filename="eft_transactions.csv"
+                    Content-Type: text/plain' );
 
 
 
