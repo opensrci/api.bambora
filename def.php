@@ -58,8 +58,7 @@ class Batch_Req_Class
 };
 
 
-//eft request in array 
-$my_eft_records_array = [
+$eft_pay = [
         [
                 'type'=> BATCH_TYPE,              //Transaction type - The type of transaction:E - EFT,A - ACH (coming soon) ,C - Credit card (coming soon) 
                 'credit-debit'=>BATCH_ACT_DEBIT,  //Transaction Action, C – Credit recipient bank accounts, D – *Debit an outside bank account and depositing funds into your own
@@ -95,7 +94,7 @@ $addendum = '';         //note associated with the batch file. Max length: 80 ch
 
 
 //Batch reports request array
-$my_batch_records_array = [
+$eft_rpt = [
                 // Predefined Params
                 'rptVersion'=>RPT_VER,            //Report version number
                 'merchantId'=>MID,                //merchant Id
@@ -103,12 +102,12 @@ $my_batch_records_array = [
                 'sessionSource'=>RPT_SS,          //Session source
                 
                 //Service Name:
-                //      BATCH_RPT_EFT ("BatchPaymentsEFT") - EFT only
+                //      BATCH_RPT_EFT ("BatchPaymentsEFT") - EFT only(default)
                 //      BATCH_RPT_ACH ("BatchPaymentsACH") - ACH only
                 //      BATCH_RPT_ALL ("BatchSettlement")  - ACH or EFT
-                'serviceName'=>'',                //Report service name
+                'serviceName'=>RPT_SVC,    //Report service name
                 
-                //Report Response Format
+                //Report Response Format, current version support ONLY JSON
                 'rptFormat'=>'JSON',              //*JSON, XMl, TSV, CSV, or XLS formats
                 
                 'rptFromDateTime'=>'',            //report start date time yyyy-mm-dd 00:00:00
@@ -181,7 +180,7 @@ class Batch_Rpt_Class
                 $rptOperationType1=RPT_OPR,     //report operation type
                 $rptVersion=RPT_VER,            //Report version number
                 $serviceName=RPT_SVC,           //Report service name
-                $rptFormat='',                  //JSON, XMl, TSV, CSV, or XLS formats
+                $rptFormat='JSON',              //*JSON, XMl, TSV, CSV, or XLS formats
                 $rptFromDateTime='',            //report start date time yyyy-mm-dd 00:00:00
                 $rptToDateTime='',              //report end date time yyyy-mm-dd 23:59:59
                 $rptFilterBy1='',               //report batch id for
